@@ -1,0 +1,92 @@
+// package StringPat;
+import java.util.Scanner;
+
+class Student {
+    String name;
+    int id;
+    int marks;
+
+    Student(String name, int id, int marks) {
+        this.name = name;
+        this.id = id;
+        this.marks = marks;
+    }
+
+    char getGrade() {
+        if (marks >= 90) return 'A';
+        else if (marks >= 75) return 'B';
+        else if (marks >= 60) return 'C';
+        else if (marks >= 40) return 'D';
+        else return 'F';
+    }
+
+    void display() {
+        System.out.println("Student ID: " + id);
+        System.out.println("Name      : " + name);
+        System.out.println("Marks     : " + marks);
+        System.out.println("Grade     : " + getGrade());
+        System.out.println("-------------------------");
+    }
+}
+
+public class GradeManagementSystem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        // Validate student count input
+        System.out.print("Enter number of students: ");
+        int n = 0;
+        if(sc.hasNextInt()) {
+            n = sc.nextInt();
+            sc.nextLine(); // consume the newline
+        } else {
+            System.out.println("Invalid input for student count.");
+            return;
+        }
+
+        Student[] students = new Student[n];
+
+        for (int i = 0; i < n; i++) {
+            System.out.println("Enter details for Student " + (i + 1) + ":");
+
+            // Validate name input
+            System.out.print("Name: ");
+            String name = sc.nextLine();
+
+            // Validate id input
+            System.out.print("ID: ");
+            int id = 0;
+            if (sc.hasNextInt()) {
+                id = sc.nextInt();
+            } else {
+                System.out.println("Invalid input for ID.");
+                return;
+            }
+
+            // Validate marks input
+            System.out.print("Marks: ");
+            int marks = 0;
+            if (sc.hasNextInt()) {
+                marks = sc.nextInt();
+            } else {
+                System.out.println("Invalid input for Marks.");
+                return;
+            }
+            sc.nextLine(); // consume newline after reading marks
+       try {
+            students[i] = new Student(name, id, marks);
+            }
+           catch(Exception e){
+	        System.out.println("correct it");
+	
+           }
+        }
+
+        System.out.println("\n--- Student Reports ---");
+        for (Student s : students) {
+            s.display();
+        }
+
+        sc.close();
+    }
+}
